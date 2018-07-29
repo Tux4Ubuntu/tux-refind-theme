@@ -52,7 +52,7 @@ function install {
 
 }
 
-function uninstall_boot_loader { 
+function uninstall { 
     printf "\033c"
     header "Removing Tux in BOOT LOADER" "$1"
     echo "Are you sure you want to remove TUX REFIND THEME from your rEFInd?"
@@ -162,7 +162,7 @@ do
 ║   2) Install                                   - Install the theme           ║
 ║   3) Uninstall                                 - Uninstall the theme         ║
 ║   ------------------------------------------------------------------------   ║
-║   Q) I'm done                                  - Quit the installer (Ctrl+C) ║
+║   Q) Quit                                      - Quit the installer (Ctrl+C) ║
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 EOF
