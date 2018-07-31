@@ -5,7 +5,7 @@ NC='\033[0m' # No Color
 
 function install {
     printf "\033c"
-    header "Adding TUX REFIND THEME" "$1"
+    header "Adding TUX as REFIND THEME" "$1"
     printf "${RED}MAKE SURE rEFInd IS INSTALLED!${NC}\n"                       
     echo ""
     echo "rEFInd does many things and one thing is that its presenting the boot options"
@@ -32,7 +32,7 @@ function install {
                     echo "Successfully copied 'tux-refind-theme' to your rEFInd themes folder."
                 else
                     printf "\033c"
-                    header "Adding TUX REFIND THEME" "$1"
+                    header "Adding TUX as REFIND THEME" "$1"
                     printf "${RED}COULDN'T FIND REFIND THEMES FOLDER!${NC}\n"   
                     echo "If rEFInd is installed, check out our manual instructions at:"
                     echo "https://tux4ubuntu.org"
@@ -41,7 +41,7 @@ function install {
                 fi
                 break;;
             No ) printf "\033c"
-                header "Adding TUX REFIND THEME" "$1"
+                header "Adding TUX as REFIND THEME" "$1"
                 echo "Exiting rEFInd installer."
 
                 break;;
