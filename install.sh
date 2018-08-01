@@ -20,7 +20,7 @@ function install {
     select yn in "Yes" "No"; do
         case $yn in
             Yes )
-                printf " ${YELLOW}Initiating to copy folder tux-refind-theme.${NC}\n"
+                printf "${YELLOW}Initiating to copy folder tux-refind-theme.${NC}\n"
                 check_sudo
                 if [ -d "/boot/efi/EFI/refind/themes/" ]; then
                 # Control will enter here if $DIRECTORY exists.
@@ -29,13 +29,13 @@ function install {
                     sudo cp -rf tux-refind-theme /boot/efi/EFI/refind/themes/tux-refind-theme
                     # Here we add a last line if it not already exists (If other themes exists doesn't matter since our line ends up last and will therefore be used)
                     sudo grep -q -F 'include themes/tux-refind-theme/theme.conf' /boot/efi/EFI/refind/refind.conf || echo 'include themes/tux-refind-theme/theme.conf' | sudo tee -a /boot/efi/EFI/refind/refind.conf
-                    printf "${YELLOW}Successfully copied 'tux-refind-theme' to your rEFInd themes folder.${NC}\n"
+                    printf "${GREEN}Successfully installed TUX Boot Loader theme.${NC}\n"
                 else
                     printf "\033c"
                     header "TUX REFIND THEME" "$1"
                     printf "${LIGHT_RED}Couldn't find rEFInd's theme folder${NC}\n"   
-                    echo "If rEFInd is installed, check out our manual instructions at:"
-                    echo "https://tux4ubuntu.org"
+                    printf "If rEFInd is installed, check out our ${LIGHT_GREEN}MANUAL GUIDES${NC} at:"
+                    printf "${YELLOW}https://tux4ubuntu.org${NC}"
                     echo ""
                     echo "Otherwise, read the instructions more carefully before continuing :)"
                 fi
@@ -49,6 +49,7 @@ function install {
     done
     echo ""
     read -n1 -r -p "Press any key to continue..." key
+    exit
 
 }
 
@@ -73,7 +74,7 @@ function uninstall {
                         printf " ${YELLOW}Removing theme from rEFInd.${NC}\n"
                         sudo sed -i '$ d' /boot/efi/EFI/refind/refind.conf
                         sudo rm -f -r /efi/EFI/boot/refind/themes/tux-refind-theme
-                        printf " Successfully removed the theme from rEFInd.\n"                      
+                        printf "${LIGHT_GREEN}Successfully removed TUX Boot Loader theme from rEFInd.${NC}\n"                      
                     else
                         printf "\033c"
                         header "TUX REFIND THEME" "$1"
@@ -101,6 +102,7 @@ function uninstall {
     
     echo ""
     read -n1 -r -p "Press any key to continue..." key
+    exit
 }
 
 function header {
@@ -139,10 +141,11 @@ function check_sudo {
 function goto_tux4ubuntu_org {
     echo ""
     printf "${YELLOW}Launching website in your favourite browser...${NC}\n"
-    x-www-browser https://tux4ubuntu.org/ &
+    x-www-browser https://tux4ubuntu.org/portfolio/refind &
     echo ""
     sleep 2
     read -n1 -r -p "Press any key to continue..." key
+    exit
 }
 
 while :
@@ -157,20 +160,21 @@ do
     # Menu system as found here: http://stackoverflow.com/questions/20224862/bash-script-always-show-menu-after-loop-execution
     cat<<EOF                                                                      
 Type one of the following numbers/letters:
-                                                         
-1) Read Instructions                      - Open up tux4ubuntu.org      
-2) Install                                - Install Boot Loader theme          
-3) Uninstall                              - Uninstall Boot Loader theme       
---------------------------------------------------------------------------------   
+                                                             
+1) Install                                - Install Boot Loader theme          
+2) Uninstall                              - Uninstall Boot Loader theme       
+--------------------------------------------------------------------------------
+3) Read Code/Instructions                 - Open up tux4ubuntu.org  
+--------------------------------------------------------------------------------
 Q) Skip                                   - Quit Boot Loader theme installation
 
 (Press Control + C to quit the installer all together)
 EOF
     read -n1 -s
     case "$REPLY" in
-    "1")    goto_tux4ubuntu_org;;
-    "2")    install $1;;
-    "3")    uninstall $1;;
+    "1")    install $1;;
+    "2")    uninstall $1;;
+    "3")    goto_tux4ubuntu_org;;
     "S")    exit                      ;;
     "s")    exit                      ;;
     "Q")    exit                      ;;
