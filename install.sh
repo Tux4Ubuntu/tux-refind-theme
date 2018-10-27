@@ -22,9 +22,10 @@ function install {
             Yes )
                 printf "${YELLOW}Initiating to copy folder tux-refind-theme.${NC}\n"
                 check_sudo
-                if [ -d "/boot/efi/EFI/refind/themes/" ]; then
+                if [ -d "/boot/efi/EFI/refind/" ]; then
                 # Control will enter here if $DIRECTORY exists.
                     sudo rm -rf /boot/efi/EFI/refind/themes/tux-refind-theme
+                    sudo mkdir -p /boot/efi/EFI/refind
                     sudo mkdir -p /boot/efi/EFI/refind/themes
                     sudo cp -rf src /boot/efi/EFI/refind/themes/tux-refind-theme
                     # Here we add a last line if it not already exists (If other themes exists doesn't matter since our line ends up last and will therefore be used)
