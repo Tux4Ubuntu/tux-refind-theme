@@ -22,7 +22,7 @@ function install {
             Yes )
                 printf "${YELLOW}Initiating to copy folder tux-refind-theme.${NC}\n"
                 check_sudo
-                if [ -d "/boot/efi/EFI/refind/" ]; then
+                if sudo test -d "/boot/efi/EFI/refind/"; then
                 # Control will enter here if $DIRECTORY exists.
                     sudo rm -rf /boot/efi/EFI/refind/themes/tux-refind-theme
                     sudo mkdir -p /boot/efi/EFI/refind
