@@ -164,7 +164,7 @@ do
     cat<<EOF                                                                      
 Type one of the following numbers/letters:
                                                              
-1) Install-1                                - Install Boot Loader theme          
+1) Install                                - Install Boot Loader theme          
 2) Uninstall                              - Uninstall Boot Loader theme       
 --------------------------------------------------------------------------------
 3) Read Code/Instructions                 - Open up tux4ubuntu.org  
